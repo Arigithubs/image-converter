@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinterdnd2 import DND_FILES, TkinterDnD
+from tkinterdnd2 import DND_FILES
 from PIL import Image
 import os
 
@@ -18,11 +18,15 @@ def on_drop(event):
         # Assuming the user wants PNG format and quality of 90
         convert_image(f, 'png', 90)
 
-root = TkinterDnD.Tk()
+root = tk.Tk()
 root.title("Image Converter")
 
-drop_area = tk.Label(root, text="Drag and Drop Images Here")
-drop_area.pack(expand=True, fill=tk.BOTH)
+# Styling the window
+root.geometry("400x300")
+root.configure(bg="#f2f2f2")
+
+drop_area = tk.Label(root, text="Drag and Drop Images Here", font=("Arial", 16), bg="#ffffff", fg="#333333", relief=tk.RAISED)
+drop_area.pack(expand=True, fill=tk.BOTH, padx=20, pady=20)
 drop_area.drop_target_register(DND_FILES)
 drop_area.dnd_bind('<<Drop>>', on_drop)
 
